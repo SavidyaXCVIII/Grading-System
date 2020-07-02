@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.HashMap;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,8 +12,9 @@ import java.util.HashMap;
 public class Assignment {
 
     private String assignmentName;
-    private double timeSpent;
     private int numberOfQuestions;
     private int numberOfAttempts;
     private Question[] questions;
+
+
 }
