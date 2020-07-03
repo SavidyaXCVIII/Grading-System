@@ -2,13 +2,13 @@
 <div class="main-container">
   <div class="sub-container">
     <div class="container">
-      <span class="text1">Welcome in</span>
+      <span class="text1">Welcome</span>
       <span class="text2">Student Grading System</span>
     </div>
     <div class="second-container">
       <span>log in as :</span><br>
       <button mat-stroked-button (click)="openLogIn()">Student</button>
-      <button mat-stroked-button>Teacher</button>
+      <button mat-stroked-button (click)="openLogIn()">Teacher</button>
     </div>
   </div>
   <router-outlet></router-outlet>

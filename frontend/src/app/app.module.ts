@@ -12,6 +12,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   entryComponents: [
@@ -31,7 +32,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatIconModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
