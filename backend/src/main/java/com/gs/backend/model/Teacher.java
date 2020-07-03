@@ -12,8 +12,17 @@ import lombok.Setter;
 public class Teacher {
 
     private String name;
-    private int teacherNumber;
-    private String userName;
+    private int teacherId;
+    private String email;
     private String password;
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "name='" + name + '\'' +
+                ", teacherId=" + teacherId +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
