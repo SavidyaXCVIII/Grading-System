@@ -16,10 +16,11 @@ public class Assignment {
     private Question[] questions;
     private String course;
 
-    public Assignment(String assignmentName, int numberOfAttempts, Question[] questions) {
+    public Assignment(String assignmentName, int numberOfAttempts, Question[] questions, String course) {
         this.assignmentName = assignmentName;
         this.numberOfAttempts = numberOfAttempts;
         this.questions = questions;
+        this.course = course;
     }
 
     public void setQuestions(Question[] questions) {
