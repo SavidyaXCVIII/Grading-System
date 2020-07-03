@@ -1,3 +1,4 @@
+<div class="background"></div>
 <div class="main-container">
   <div class="sub-container">
     <div class="container">
@@ -6,9 +7,9 @@
     </div>
     <div class="second-container">
       <span>log in as :</span><br>
-      <button mat-stroked-button>Student</button>
+      <button mat-stroked-button (click)="openLogIn()">Student</button>
       <button mat-stroked-button>Teacher</button>
-
     </div>
   </div>
+  <router-outlet></router-outlet>
 </div>

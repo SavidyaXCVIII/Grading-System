@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {LogInComponent} from '../shared/log-in/log-in.component';
 
 @Component({
   selector: 'app-select-user',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectUserComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
   }
 
+  openLogIn(): void {
+    const dialogRef = this.dialog.open(LogInComponent, {
+      width: '600px',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 }

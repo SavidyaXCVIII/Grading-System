@@ -1,7 +1,17 @@
-.main-container {
+.background {
   background: url("src/assets/image-01.jpg");
   background-size: cover;
   height: 100vh;
+  -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+  filter: blur(2px);
+}
+.main-container {
+  background-size: cover;
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  top: 0;
 }
 .sub-container {
   background: rgba(0, 0, 0, 0.38);
@@ -60,6 +70,7 @@
   top: 50%;
   position: relative;
   text-align: center;
+  z-index: 5;
 }
 
 @keyframes cssAnimation {
