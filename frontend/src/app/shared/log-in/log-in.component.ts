@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-log-in',
@@ -8,12 +9,12 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class LogInComponent implements OnInit {
 
-
+  readonly ROOT_URL = 'http://localhost:8080';
   private message: string;
   hide = true;
   logIn: FormGroup;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.logIn = new FormGroup( {
@@ -31,6 +32,9 @@ export class LogInComponent implements OnInit {
     return this.message;
   }
 
-  onClickSendValues() {
+  onClickSendValues(): void {
+    // tslint:disable-next-line:max-line-length
+    this.httpClient.post( this.ROOT_URL + '/userAuthenticate?email=' + this.logIn.value.email + '&password=' + this.logIn.value.password, null).subscribe((value => {
+    }));
   }
 }
