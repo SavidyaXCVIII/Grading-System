@@ -24,14 +24,15 @@ public class LogInController {
 
     @PostMapping("/login")
     public ResponseEntity<APIResponse<String>> sendStatus(@RequestParam String email,
-                                                  @RequestParam String password){
+                                                  @RequestParam String password,
+                                                  @RequestParam String type){
 
         if (email == null || email.trim().length() == 0){
 
             return ResponseEntity.badRequest().body( new APIResponse<>(false, "Email is missing"));
         }
 
-        return ResponseEntity.ok(logInService.authenticateUser(email, password));
+        return ResponseEntity.ok(logInService.authenticateUser(email, password, type));
     }
 
 }

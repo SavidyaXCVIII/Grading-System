@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-log-in',
@@ -13,7 +14,9 @@ export class LogInComponent implements OnInit {
   hide = true;
   logIn: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(private authenticationService: AuthenticationService,
+              public dialogRef: MatDialogRef<LogInComponent>,
+              @Inject(MAT_DIALOG_DATA) public type: string) {}
 
   ngOnInit(): void {
     this.logIn = new FormGroup( {
@@ -32,7 +35,7 @@ export class LogInComponent implements OnInit {
   }
 
   onClickSendValues(): void {
-    this.authenticationService.login(this.logIn.value.email, this.logIn.value.password).subscribe(
+    this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
       (response) => {
         console.log(response.data, response.message, response.status );
     }, error => {
