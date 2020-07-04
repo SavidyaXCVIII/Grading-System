@@ -13,6 +13,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   entryComponents: [
@@ -33,7 +34,8 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '../../service/authentication.service';
 
 @Component({
   selector: 'app-log-in',
@@ -9,12 +9,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LogInComponent implements OnInit {
 
-  readonly ROOT_URL = 'http://localhost:8080';
   private message: string;
   hide = true;
   logIn: FormGroup;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.logIn = new FormGroup( {
@@ -33,8 +32,11 @@ export class LogInComponent implements OnInit {
   }
 
   onClickSendValues(): void {
-    // tslint:disable-next-line:max-line-length
-    this.httpClient.post( this.ROOT_URL + '/userAuthenticate?email=' + this.logIn.value.email + '&password=' + this.logIn.value.password, null).subscribe((value => {
-    }));
+    this.authenticationService.login(this.logIn.value.email, this.logIn.value.password).subscribe(
+      (response) => {
+        console.log(response.data, response.message, response.status );
+    }, error => {
+        console.log('Cannot log at the moment.');
+      });
   }
 }
