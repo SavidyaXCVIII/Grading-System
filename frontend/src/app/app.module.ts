@@ -14,6 +14,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {HttpClientModule} from '@angular/common/http';
+import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
+import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 
 @NgModule({
   entryComponents: [
@@ -22,7 +24,9 @@ import {HttpClientModule} from '@angular/common/http';
   declarations: [
     AppComponent,
     SelectUserComponent,
-    LogInComponent
+    LogInComponent,
+    StudentDashboardComponent,
+    TeacherDashboardComponent,
   ],
   imports: [
     BrowserModule,

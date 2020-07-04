@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {SelectUserComponent} from './select-user/select-user.component';
-import {LogInComponent} from './shared/log-in/log-in.component';
+import {StudentDashboardComponent} from './student-dashboard/student-dashboard.component';
+import {TeacherDashboardComponent} from './teacher-dashboard/teacher-dashboard.component';
 
 
 const routes: Routes = [
@@ -10,8 +11,12 @@ const routes: Routes = [
     component: SelectUserComponent
   },
   {
-    path: 'log-in',
-    component: LogInComponent
+    path: 'student',
+    component: StudentDashboardComponent
+  },
+  {
+    path: 'teacher',
+    component: TeacherDashboardComponent
   }
 ];
 

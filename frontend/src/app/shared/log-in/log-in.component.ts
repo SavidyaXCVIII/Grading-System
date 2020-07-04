@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-log-in',
@@ -13,10 +14,12 @@ export class LogInComponent implements OnInit {
   private message: string;
   hide = true;
   logIn: FormGroup;
+  status = false;
 
   constructor(private authenticationService: AuthenticationService,
               public dialogRef: MatDialogRef<LogInComponent>,
-              @Inject(MAT_DIALOG_DATA) public type: string) {}
+              @Inject(MAT_DIALOG_DATA) public type: string,
+              private router: Router) {}
 
   ngOnInit(): void {
     this.logIn = new FormGroup( {
@@ -37,7 +40,15 @@ export class LogInComponent implements OnInit {
   onClickSendValues(): void {
     this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
       (response) => {
-        console.log(response.data, response.message, response.status );
+        console.log(response.message, response.status );
+        if (response.status) {
+          if (this.type === 'Teacher'){
+            this.router.navigate(['./teacher']);
+          } else {
+            this.router.navigate(['./student']);
+          }
+          this.dialogRef.close();
+        }
     }, error => {
         console.log('Cannot log at the moment.');
       });
