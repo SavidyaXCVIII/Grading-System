@@ -19,9 +19,6 @@ public class LogInService {
     @Autowired
     private StudentRepository studentRepository;
 
-    public void addTeacher(Teacher teacher) {
-        teacherRepository.save(teacher);
-    }
 
     public APIResponse<String> authenticateUser(String email, String password, String type) {
         if (type.equals("Teacher")) {

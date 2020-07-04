@@ -16,6 +16,7 @@ import {MatCardModule} from '@angular/material/card';
 import {HttpClientModule} from '@angular/common/http';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   entryComponents: [
@@ -39,7 +40,8 @@ import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard
     BrowserAnimationsModule,
     MatDialogModule,
     MatCardModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

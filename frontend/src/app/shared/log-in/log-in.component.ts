@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent implements OnInit {
+export class LogInComponent implements OnInit, OnDestroy {
 
   private message: string;
   hide = true;
@@ -28,6 +28,10 @@ export class LogInComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.authenticationService.userEmail = this.logIn.value.email;
+  }
+
 
   getErrorMessage(): string {
     if (this.logIn.get('email').hasError('required')) {
@@ -43,9 +47,9 @@ export class LogInComponent implements OnInit {
         console.log(response.message, response.status );
         if (response.status) {
           if (this.type === 'Teacher'){
-            this.router.navigate(['./teacher']);
+            this.router.navigate(['./teacher'], { skipLocationChange: true });
           } else {
-            this.router.navigate(['./student']);
+            this.router.navigate(['./student'], { skipLocationChange: true });
           }
           this.dialogRef.close();
         }

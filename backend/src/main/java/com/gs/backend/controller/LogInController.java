@@ -15,13 +15,6 @@ public class LogInController {
     @Autowired
     private LogInService logInService;
 
-
-    @GetMapping("/addTeacher")
-    public void addTeacher(){
-        Teacher teacher = new Teacher("Jane", 199844, "jane@gmail.com", "jane123");
-        logInService.addTeacher(teacher);
-    }
-
     @PostMapping("/login")
     public ResponseEntity<APIResponse<String>> sendStatus(@RequestParam String email,
                                                   @RequestParam String password,
