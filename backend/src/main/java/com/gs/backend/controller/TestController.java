@@ -27,7 +27,6 @@ public class TestController {
 
     @GetMapping("/student")
     public void addStudent() {
-//        Assignment assignment = new Assignment()
         Student student = new Student(2018401, "John", "john@gmail.com", "john123");
     }
 

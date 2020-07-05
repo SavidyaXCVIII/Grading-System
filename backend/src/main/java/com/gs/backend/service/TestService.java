@@ -1,5 +1,6 @@
 package com.gs.backend.service;
 
+import com.gs.backend.model.Student;
 import com.gs.backend.model.Teacher;
 import com.gs.backend.repository.StudentRepository;
 import com.gs.backend.repository.TeacherRepository;
@@ -18,4 +19,8 @@ public class TestService {
     public void addTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
     }
+
+    public void addStudent(Student student) {
+        studentRepository.save(student);
+    };
 }
