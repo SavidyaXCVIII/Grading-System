@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Question {
 
+    private String question;
     private int questionNumber;
     private String[] answers;
     private int[] correctAnswers;
