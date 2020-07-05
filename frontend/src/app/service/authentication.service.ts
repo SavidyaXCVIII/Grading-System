@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ApiResponse} from '../model/api-response';
 import {Student} from '../model/student';
+import {Teacher} from '../model/teacher';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {Student} from '../model/student';
 export class AuthenticationService {
 
   readonly ROOT_URL = 'http://localhost:8080';
-  userEmail: string;
+  studentId: number;
 
   constructor(private http: HttpClient) { }
 
@@ -27,16 +28,19 @@ export class AuthenticationService {
       })
     };
 
-    return  this.http.post<ApiResponse>( this.ROOT_URL + '/authentication/login?email=' +
-      email + '&password=' + password + '&type=' + type,
-      null);
+    return  this.http.post<ApiResponse>( this.ROOT_URL + '/authentication/login',
+      null, httpOptions);
   }
 
-  getUserEmail(): string {
-    return this.userEmail;
+  getStudentId(): number {
+    return this.studentId;
   }
 
-  getStudent(): Observable<Student> {
-    return this.http.get<Student>(this.ROOT_URL + '/student?email=' + this.userEmail);
+  findStudentById(studentId: number): Observable<ApiResponse> {
+    return this.http.get<ApiResponse>(this.ROOT_URL + '/student/' + studentId);
+  }
+
+  getTeacher(userEmail: string): Observable<Teacher> {
+    return this.http.get<Teacher>(this.ROOT_URL + '/teacher?email=' + userEmail);
   }
 }

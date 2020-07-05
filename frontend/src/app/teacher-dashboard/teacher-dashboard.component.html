@@ -1,1 +1,66 @@
 
+<div class="main-container">
+  <mat-toolbar>
+    <span>Student Grading System</span>
+    <span class="example-spacer"></span>
+    <span class="userName"></span>
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">person</mat-icon>
+  </mat-toolbar>
+
+  <div class="sub-container">
+    <div class="row">
+      <div class="column one">
+        <h1>Assignments</h1>
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Object Oriented Programming
+              </mat-panel-title>
+              <mat-panel-description>
+                This is a summary of the content
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Algorithms
+              </mat-panel-title>
+              <mat-panel-description>
+                This is a summary of the content
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>This is the primary content of the panel.</p>
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Database Systems
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+
+        </mat-accordion>
+
+      </div>
+      <div class="column two">
+        <h1>{{this.course}}</h1>
+        <h2>{{this.teacher.name}}a</h2>
+        <p>Email - {{this.teacher.email}}</p>
+        <p>Student ID - {{this.teacher.teacherId}}</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+

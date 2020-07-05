@@ -6,4 +6,5 @@ export class Assignment {
   numberOfAttempts: number;
   questions: Question[];
   course: string;
+  mark: number;
 }

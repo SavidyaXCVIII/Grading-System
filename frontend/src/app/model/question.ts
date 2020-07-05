@@ -4,4 +4,5 @@ export class Question {
   correctAnswers: number[];
   studentAnswer: string;
   timeSpent: number;
+  status: string;
 }

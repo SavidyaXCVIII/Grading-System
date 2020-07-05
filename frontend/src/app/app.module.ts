@@ -17,6 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { StudentDashboardComponent } from './student-dashboard/student-dashboard.component';
 import { TeacherDashboardComponent } from './teacher-dashboard/teacher-dashboard.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   entryComponents: [
@@ -29,20 +30,21 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     StudentDashboardComponent,
     TeacherDashboardComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatIconModule,
-    BrowserAnimationsModule,
-    MatDialogModule,
-    MatCardModule,
-    HttpClientModule,
-    MatToolbarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatIconModule,
+        BrowserAnimationsModule,
+        MatDialogModule,
+        MatCardModule,
+        HttpClientModule,
+        MatToolbarModule,
+        MatExpansionModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

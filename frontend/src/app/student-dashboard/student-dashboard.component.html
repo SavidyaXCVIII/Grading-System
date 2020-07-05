@@ -3,8 +3,40 @@
   <mat-toolbar>
     <span>Student Grading System</span>
     <span class="example-spacer"></span>
-    <span></span>
+    <span class="userName">{{this.student.studentName}}6</span>
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">person</mat-icon>
   </mat-toolbar>
-  {{student | json}}
+
+  <div class="sub-container">
+    <div class="row">
+      <div class="column one">
+        <h1>Assignments</h1>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let assignment of assignments">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{assignment.assignmentName}}
+              </mat-panel-title>
+              <mat-panel-description>
+                Assignment Details
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Aggregation: Last attempt</p> <p>Attempt Number : {{assignment.numberOfAttempts}}</p> <br>
+            <p>Number of Question : {{assignment.numberOfQuestions}}</p>
+            <p>Points Possible : 100</p> <p>Calculated Marks : {{assignment.mark}}</p>
+            <mat-action-row>
+              <button mat-button color="primary">Review Answers</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div class="column two">
+        <h1>{{this.course}}</h1>
+        <h2>{{this.student.studentName}}</h2>
+        <p>Email - {{this.student.email}}</p>
+        <p>Student ID - {{this.student.studentId}}</p>
+      </div>
+    </div>
+  </div>
+
 </div>

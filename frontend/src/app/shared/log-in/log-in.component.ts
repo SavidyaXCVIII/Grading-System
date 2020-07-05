@@ -3,18 +3,19 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../service/authentication.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
+import {Student} from '../../model/student';
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
   styleUrls: ['./log-in.component.css']
 })
-export class LogInComponent implements OnInit, OnDestroy {
+export class LogInComponent implements OnInit {
 
   private message: string;
+  status: string;
   hide = true;
   logIn: FormGroup;
-  status = false;
 
   constructor(private authenticationService: AuthenticationService,
               public dialogRef: MatDialogRef<LogInComponent>,
@@ -28,11 +29,6 @@ export class LogInComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
-    this.authenticationService.userEmail = this.logIn.value.email;
-  }
-
-
   getErrorMessage(): string {
     if (this.logIn.get('email').hasError('required')) {
       return 'You must enter a value';
@@ -44,17 +40,22 @@ export class LogInComponent implements OnInit, OnDestroy {
   onClickSendValues(): void {
     this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
       (response) => {
+        this.status = response.message;
         console.log(response.message, response.status );
         if (response.status) {
+          // const studentList: Student[] = response.data;
+          this.dialogRef.close();
           if (this.type === 'Teacher'){
             this.router.navigate(['./teacher'], { skipLocationChange: true });
           } else {
             this.router.navigate(['./student'], { skipLocationChange: true });
           }
-          this.dialogRef.close();
+          this.authenticationService.studentId = response.data;
+          console.log(response.data);
         }
     }, error => {
-        console.log('Cannot log at the moment.');
+        this.status = 'Cannot log at the moment.';
+        console.log(error.toString());
       });
   }
 }

@@ -7,8 +7,14 @@
 mat-form-field{
   width: 80%;
 }
-.button{
+.button {
   background-color: #0e2a53;
   color: white;
   width: 20%;
 }
+ .message {
+   padding-left: 20px;
+   color: darkred;
+ }
+
+
