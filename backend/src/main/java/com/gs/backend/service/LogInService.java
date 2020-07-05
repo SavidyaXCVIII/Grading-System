@@ -27,7 +27,7 @@ public class LogInService {
                 if (teacher.get().getPassword().equals(password)) {
                     return new APIResponse<>(true, "Login Successful");
                 } else {
-                    return new APIResponse<>(false, "Incorrect Password");
+                    return new APIResponse<>(false, "The password that you've entered is incorrect.");
                 }
             } else {
 
@@ -40,7 +40,7 @@ public class LogInService {
                 if (student.get().getPassword().equals(password)) {
                     return new APIResponse<>(true, "Login Successful");
                 } else {
-                    return new APIResponse<>(false, "Incorrect Password");
+                    return new APIResponse<>(false, "The password that you've entered is incorrect.");
                 }
             } else {
 

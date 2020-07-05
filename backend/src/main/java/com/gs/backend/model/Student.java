@@ -3,10 +3,12 @@ package com.gs.backend.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Student {
@@ -24,11 +26,4 @@ public class Student {
         this.password = password;
     }
 
-    public void setAssignments(Assignment assignment) {
-        if (assignment != null) {
-            assignments.add(assignment);
-        }else {
-            System.out.println("Object is null");
-        }
-    }
 }

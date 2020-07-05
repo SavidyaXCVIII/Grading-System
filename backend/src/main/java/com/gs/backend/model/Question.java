@@ -15,7 +15,7 @@ public class Question {
     private int questionNumber;
     private String[] answers;
     private int[] correctAnswers;
-    private int studentAnswer;
+    private int[] studentAnswers;
     private double timeSpent;
 
  }
