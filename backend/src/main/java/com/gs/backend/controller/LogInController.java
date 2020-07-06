@@ -16,7 +16,7 @@ public class LogInController {
     private LogInService logInService;
 
     @PostMapping("/login")
-    public ResponseEntity<APIResponse<String>> sendStatus(@RequestParam String email,
+    public ResponseEntity<APIResponse<Integer>> sendStatus(@RequestParam String email,
                                                   @RequestParam String password,
                                                   @RequestParam String type){
 

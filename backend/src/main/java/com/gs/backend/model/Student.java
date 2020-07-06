@@ -26,4 +26,14 @@ public class Student {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentId=" + studentId +
+                ", studentName='" + studentName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", assignments=" + assignments +
+                '}';
+    }
 }

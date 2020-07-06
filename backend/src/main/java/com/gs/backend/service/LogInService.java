@@ -20,7 +20,7 @@ public class LogInService {
     private StudentRepository studentRepository;
 
 
-    public APIResponse<String> authenticateUser(String email, String password, String type) {
+    public APIResponse<Integer> authenticateUser(String email, String password, String type) {
         if (type.equals("Teacher")) {
             Optional<Teacher> teacher = teacherRepository.findFirstByEmail(email);
             if (teacher.isPresent()) {
@@ -35,10 +35,11 @@ public class LogInService {
             }
         }
         else  {
-            Optional<Student> student = studentRepository.findFirstByEmail(email);
+            Optional<Student> student = studentRepository.findByEmail(email);
             if (student.isPresent()) {
                 if (student.get().getPassword().equals(password)) {
-                    return new APIResponse<>(true, "Login Successful");
+                    System.out.println(student.get().getStudentId());
+                    return new APIResponse<>(true, student.get().getStudentId(), "Login Successful");
                 } else {
                     return new APIResponse<>(false, "The password that you've entered is incorrect.");
                 }

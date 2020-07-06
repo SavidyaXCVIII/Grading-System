@@ -15,6 +15,7 @@ public class Assignment {
     private int numberOfAttempts;
     private Question[] questions;
     private String course;
+    private int mark;
 
     public Assignment(String assignmentName, int numberOfAttempts, Question[] questions, String course) {
         this.assignmentName = assignmentName;

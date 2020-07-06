@@ -1,12 +1,24 @@
 package com.gs.backend.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.gs.backend.model.Student;
+import com.gs.backend.model.Teacher;
+import com.gs.backend.service.TeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/authentication")
+@RequestMapping("/teacher")
 @CrossOrigin(origins = "*")
 public class TeacherController {
+
+    @Autowired
+    private TeacherService teacherService;
+
+    @GetMapping("")
+    public Optional<Teacher> getTeacher(@RequestParam String email){
+        return teacherService.getTeacher(email);
+    }
 
 }
