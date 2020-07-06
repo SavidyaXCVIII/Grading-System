@@ -9,4 +9,6 @@ public interface TeacherRepository extends MongoRepository<Teacher, String> {
 
     Optional<Teacher> findFirstByEmail(String email);
 
+    Optional<Teacher> findFirstByTeacherId(int teacherId);
+
 }
