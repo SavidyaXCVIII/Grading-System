@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
+import {TeacherService} from '../service/teacher.service';
+import {Teacher} from '../model/teacher';
+import {Student} from '../model/student';
+import {Assignment} from '../model/assignment';
+import {Question} from '../model/question';
+import {ifStmt} from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-teacher-dashboard',
@@ -8,19 +14,58 @@ import {AuthenticationService} from '../service/authentication.service';
 })
 export class TeacherDashboardComponent implements OnInit {
 
-  userEmail: string;
-  teacher: any;
+  teacherId: number;
+  teacher: Teacher;
   course: string;
-  panelOpenState: boolean;
+  students: Student[];
+  assignments: string[] = ['Object Oriented Programming', 'Algorithms', 'Database Systems'];
+  questions: Question[];
+  totalTime: number;
+  assignmentNumber: number;
+  assignmentQuestions: Question[];
+  count: number;
 
-  constructor(private authenticationService: AuthenticationService) {
-    // this.userEmail = this.authenticationService.get();
-    this.authenticationService.getTeacher(this.userEmail).subscribe((response) => {
-      this.teacher = response;
+  constructor(private teacherService: TeacherService) {}
+
+
+  ngOnInit(): void {
+    this.teacherService.findTeacherById(this.teacherId).subscribe((response) => {
+      this.teacher = response.data;
+    });
+
+    this.teacherService.findAllStudents().subscribe((response) => {
+      this.students = response.data;
+      this.questions = response.data[0].assignments[0].questions;
     });
   }
 
-  ngOnInit(): void {
+  getAssignmentNumber(assignmentNumber: number): void {
+    this.assignmentNumber = assignmentNumber;
   }
+
+  findAverageTimeOnQuestion(questionNumber: number, assignment: number): number {
+    this.totalTime = 0;
+    this.students.forEach(x => this.totalTime = this.totalTime + x.assignments[assignment].questions[questionNumber].timeSpent);
+    return this.totalTime / this.students.length;
+  }
+
+  findNumberOfStudentAnsweredCorrect(questionNumber: number, assignment: number): void {
+    this.students.forEach(x => {
+    });
+  }
+
+  scroll(el: HTMLElement): void {
+    setTimeout(() => {
+      el.scrollIntoView(
+        {behavior: 'smooth'}
+      );
+    }, 200);
+  }
+
+  findQuestionsByAssignment(assignmentNumber: number): void {
+    console.log(this.students[0].assignments[assignmentNumber].questions);
+    this.assignmentQuestions = this.students[0].assignments[assignmentNumber].questions;
+  }
+
 
 }

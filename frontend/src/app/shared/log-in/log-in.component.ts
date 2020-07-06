@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../service/authentication.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Student} from '../../model/student';
+import {TeacherService} from '../../service/teacher.service';
 
 @Component({
   selector: 'app-log-in',
@@ -20,7 +21,8 @@ export class LogInComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               public dialogRef: MatDialogRef<LogInComponent>,
               @Inject(MAT_DIALOG_DATA) public type: string,
-              private router: Router) {}
+              private router: Router,
+              private teacherService: TeacherService) {}
 
   ngOnInit(): void {
     this.logIn = new FormGroup( {
@@ -41,17 +43,18 @@ export class LogInComponent implements OnInit {
     this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
       (response) => {
         this.status = response.message;
-        console.log(response.message, response.status );
+        console.log(response.message, response.status, response.data);
         if (response.status) {
           // const studentList: Student[] = response.data;
           this.dialogRef.close();
           if (this.type === 'Teacher'){
             this.router.navigate(['./teacher'], { skipLocationChange: true });
+            this.teacherService.id = response.data;
+            console.log(response.data);
           } else {
+            this.authenticationService.studentId = response.data;
             this.router.navigate(['./student'], { skipLocationChange: true });
           }
-          this.authenticationService.studentId = response.data;
-          console.log(response.data);
         }
     }, error => {
         this.status = 'Cannot log at the moment.';

@@ -32,7 +32,7 @@ mat-toolbar {
 }
 .one {
   width: 60%;
-  height: 80vh;
+  height: 85vh;
 }
 .two {
   width: 30%;
@@ -53,4 +53,30 @@ mat-accordion {
 }
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
+}
+
+/*table styles*/
+#teacher {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#teacher td, #teacher th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+#teacher th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #13547a;
+  color: white;
+}
+.sub-review {
+  background: white;
+  margin: 0 5% 0 5%;
+  border-radius: 5px;
 }

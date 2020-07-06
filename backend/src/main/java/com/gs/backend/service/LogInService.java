@@ -25,7 +25,7 @@ public class LogInService {
             Optional<Teacher> teacher = teacherRepository.findFirstByEmail(email);
             if (teacher.isPresent()) {
                 if (teacher.get().getPassword().equals(password)) {
-                    return new APIResponse<>(true, "Login Successful");
+                    return new APIResponse<>(true, teacher.get().getTeacherId(),"Login Successful");
                 } else {
                     return new APIResponse<>(false, "The password that you've entered is incorrect.");
                 }
@@ -38,7 +38,6 @@ public class LogInService {
             Optional<Student> student = studentRepository.findByEmail(email);
             if (student.isPresent()) {
                 if (student.get().getPassword().equals(password)) {
-                    System.out.println(student.get().getStudentId());
                     return new APIResponse<>(true, student.get().getStudentId(), "Login Successful");
                 } else {
                     return new APIResponse<>(false, "The password that you've entered is incorrect.");

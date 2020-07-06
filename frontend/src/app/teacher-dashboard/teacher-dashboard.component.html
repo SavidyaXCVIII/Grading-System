@@ -12,42 +12,32 @@
       <div class="column one">
         <h1>Assignments</h1>
         <mat-accordion>
-          <mat-expansion-panel hideToggle>
+          <mat-expansion-panel *ngFor="let assignment of assignments; let i = index">
             <mat-expansion-panel-header>
               <mat-panel-title>
-                Object Oriented Programming
+                {{assignment}}
               </mat-panel-title>
               <mat-panel-description>
-                This is a summary of the content
+                Overall grade details
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
-          </mat-expansion-panel>
-
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Algorithms
-              </mat-panel-title>
-              <mat-panel-description>
-                This is a summary of the content
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>This is the primary content of the panel.</p>
-          </mat-expansion-panel>
-
-
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                Database Systems
-              </mat-panel-title>
-              <mat-panel-description>
-                Currently I am {{panelOpenState ? 'open' : 'closed'}}
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>I'm visible because I am open</p>
+            <table id="teacher">
+              <tr>
+                <th>Student ID</th>
+                <th>Student Name</th>
+                <th>Number of Attempts</th>
+                <th>Calculated Marks</th>
+              </tr>
+              <tr *ngFor="let student of students;">
+                <td>{{student.studentId}}</td>
+                <td>{{student.studentName}}</td>
+                <td>{{student.assignments[0].numberOfAttempts}}</td>
+                <td>{{student.assignments[0].mark}}</td>
+              </tr>
+            </table>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="getAssignmentNumber(i); scroll(target); findQuestionsByAssignment(assignmentNumber);">Statistics on questions</button>
+            </mat-action-row>
           </mat-expansion-panel>
 
         </mat-accordion>
@@ -55,7 +45,7 @@
       </div>
       <div class="column two">
         <h1>{{this.course}}</h1>
-        <h2>{{this.teacher.name}}a</h2>
+        <h2>{{this.teacher.name}}</h2>
         <p>Email - {{this.teacher.email}}</p>
         <p>Student ID - {{this.teacher.teacherId}}</p>
       </div>
@@ -63,4 +53,18 @@
   </div>
 
 </div>
+<div class="review-answers" #target>
+  <div class="sub-review">
+    <mat-list>
+      <div *ngFor="let question of assignmentQuestions; let i = index">
+        <div mat-subheader class="question">{{i+1}}.{{question.question}} </div>
+        <mat-list-item>
+          <div mat-line class="heading">Average time spent : {{findAverageTimeOnQuestion(question.questionNumber - 1,assignmentNumber)}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </div>
+</div>
+
 
