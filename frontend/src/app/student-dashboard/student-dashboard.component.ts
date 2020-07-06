@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {Student} from '../model/student';
 import {Assignment} from '../model/assignment';
+import {Question} from '../model/question';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -15,6 +16,8 @@ export class StudentDashboardComponent implements OnInit {
   panelOpenState: boolean;
   student: Student;
   assignments: Assignment[];
+  assignmentIndex: number;
+  questions: Question[];
 
   constructor(private authenticationService: AuthenticationService) {}
 
@@ -28,4 +31,16 @@ export class StudentDashboardComponent implements OnInit {
     });
   }
 
+  getAssignmentName(index: number): void {
+    this.assignmentIndex = index;
+    this.questions = this.assignments[this.assignmentIndex].questions;
+  }
+
+  scroll(el: HTMLElement): void {
+    setTimeout(() => {
+      el.scrollIntoView(
+        {behavior: 'smooth'}
+      );
+    }, 200);
+  }
 }

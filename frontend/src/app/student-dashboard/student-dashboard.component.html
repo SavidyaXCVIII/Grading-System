@@ -3,7 +3,7 @@
   <mat-toolbar>
     <span>Student Grading System</span>
     <span class="example-spacer"></span>
-    <span class="userName">{{this.student.studentName}}6</span>
+    <span class="userName">{{this.student.studentName}}</span>
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">person</mat-icon>
   </mat-toolbar>
 
@@ -12,7 +12,7 @@
       <div class="column one">
         <h1>Assignments</h1>
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let assignment of assignments">
+          <mat-expansion-panel *ngFor="let assignment of assignments; let i = index">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{assignment.assignmentName}}
@@ -21,11 +21,26 @@
                 Assignment Details
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Aggregation: Last attempt</p> <p>Attempt Number : {{assignment.numberOfAttempts}}</p> <br>
-            <p>Number of Question : {{assignment.numberOfQuestions}}</p>
-            <p>Points Possible : 100</p> <p>Calculated Marks : {{assignment.mark}}</p>
+            <table id="student">
+              <tr>
+                <th>Aggregation</th>
+                <th>Attempt Number</th>
+                <th>Number of Questions</th>
+                <th>Credit</th>
+                <th>Points Possible</th>
+                <th>Calculated Marks</th>
+              </tr>
+              <tr>
+                <td>Last attempt</td>
+                <td>{{assignment.numberOfAttempts}}</td>
+                <td>{{assignment.numberOfQuestions}}</td>
+                <td>20</td>
+                <td>100</td>
+                <td>{{assignment.mark}}</td>
+              </tr>
+            </table>
             <mat-action-row>
-              <button mat-button color="primary">Review Answers</button>
+              <button mat-button color="primary" (click)="getAssignmentName(i);scroll(target)">Review Answers</button>
             </mat-action-row>
           </mat-expansion-panel>
         </mat-accordion>
@@ -38,5 +53,31 @@
       </div>
     </div>
   </div>
-
 </div>
+<div class="review-answers" #target>
+  <div class="sub-review">
+    <mat-list>
+      <div *ngFor="let question of questions;let i = index">
+        <div mat-subheader class="question">{{i+1}}.{{question.question}} </div>
+        <mat-list-item>
+          <div mat-line *ngFor="let answer of question.answers; let k = index;">{{k+1}}.{{answer}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line class="heading">Answers given</div>
+          <div mat-line *ngFor="let studentAnswer of question.studentAnswers;">{{question.answers[studentAnswer]}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line class="heading">Correct Answers</div>
+          <div mat-line *ngFor="let correctAnswer of question.correctAnswers;">{{question.answers[correctAnswer]}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>
+            Your answer is {{question.status}}. &nbsp;&nbsp; Time Spent :{{question.timeSpent}} seconds
+          </div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-list>
+  </div>
+</div>
+

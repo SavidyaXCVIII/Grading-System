@@ -89,3 +89,9 @@ button:hover {
   color: white;
   background: #000D22;
 }
+
+.review-answers {
+  background: white;
+  border-radius: 5px;
+  margin: 5%;
+}

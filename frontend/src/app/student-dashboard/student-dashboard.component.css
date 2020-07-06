@@ -11,6 +11,13 @@
   background-image: linear-gradient(to right, #13547a  0%, #80d0c7 100%);
   height: 100vh;
 }
+
+.sub-review {
+  background: white;
+  margin: 0 5% 0 5%;
+  border-radius: 5px;
+}
+
 mat-toolbar {
   background: rgba(255, 255, 255, 0.65);
 }
@@ -58,4 +65,38 @@ p {
   justify-content: space-between;
   align-content: center;
   flex-basis: 0;
+}
+
+/*table styles*/
+#student {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#student td, #student th {
+  border: 1px solid #ddd;
+  padding: 8px;
+
+}
+
+#student th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #13547a;
+  color: white;
+}
+
+.review-answers {
+  background-image: linear-gradient(to right, #13547a  0%, #80d0c7 100%);
+}
+
+.question {
+  color: black;
+  font-size: 1.2em;
+}
+
+.heading {
+  color: #13547a;
 }
