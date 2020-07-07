@@ -5,6 +5,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {Router} from '@angular/router';
 import {Student} from '../../model/student';
 import {TeacherService} from '../../service/teacher.service';
+import {StudentService} from '../../service/student.service';
 
 @Component({
   selector: 'app-log-in',
@@ -22,15 +23,17 @@ export class LogInComponent implements OnInit {
               public dialogRef: MatDialogRef<LogInComponent>,
               @Inject(MAT_DIALOG_DATA) public type: string,
               private router: Router,
-              private teacherService: TeacherService) {}
+              private teacherService: TeacherService,
+              private studentService: StudentService) {}
 
   ngOnInit(): void {
+    // Creating Forms
     this.logIn = new FormGroup( {
       email : new FormControl('', [Validators.required, Validators.email]),
       password : new FormControl('', Validators.required)
     });
   }
-
+  // Login Authentication
   getErrorMessage(): string {
     if (this.logIn.get('email').hasError('required')) {
       return 'You must enter a value';
@@ -39,6 +42,7 @@ export class LogInComponent implements OnInit {
     return this.message;
   }
 
+  // send the user details and authenticate and get the user specific id
   onClickSendValues(): void {
     this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
       (response) => {
@@ -49,10 +53,12 @@ export class LogInComponent implements OnInit {
           this.dialogRef.close();
           if (this.type === 'Teacher'){
             this.router.navigate(['./teacher'], { skipLocationChange: true });
+            // save the user specific id in the authenticate service
             this.teacherService.id = response.data;
             console.log(response.data);
           } else {
-            this.authenticationService.studentId = response.data;
+            // save the user specific id in the authenticate service
+            this.studentService.studentId = response.data;
             this.router.navigate(['./student'], { skipLocationChange: true });
           }
         }

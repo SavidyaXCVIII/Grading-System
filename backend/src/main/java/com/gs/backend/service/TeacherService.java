@@ -19,7 +19,6 @@ public class TeacherService {
     public APIResponse<Teacher> findTeacherById(int teacherId) {
 
         Optional<Teacher> optionalTeacher = teacherRepository.findFirstByTeacherId(teacherId);
-        System.out.println(optionalTeacher);
 
         if (optionalTeacher.isPresent()){
             return new APIResponse<>(true, optionalTeacher.get(), "teacher found");

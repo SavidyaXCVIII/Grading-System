@@ -5,6 +5,7 @@
     <span class="example-spacer"></span>
     <span class="userName"></span>
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">person</mat-icon>
+    <button mat-button routerLink="/" (click)="logOut()">Log out</button>
   </mat-toolbar>
 
   <div class="sub-container">
@@ -60,6 +61,15 @@
         <div mat-subheader class="question">{{i+1}}.{{question.question}} </div>
         <mat-list-item>
           <div mat-line class="heading">Average time spent : {{findAverageTimeOnQuestion(question.questionNumber - 1,assignmentNumber)}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Number of correct answers : {{findNumberOfStudentAnswered(question.questionNumber - 1, assignmentNumber, 'right')}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Number of wrong answers : {{findNumberOfStudentAnswered(question.questionNumber - 1, assignmentNumber, 'wrong')}}</div>
+        </mat-list-item>
+        <mat-list-item>
+          <div mat-line>Number of partial answers : {{findNumberOfStudentAnswered(question.questionNumber - 1, assignmentNumber, 'partial')}}</div>
         </mat-list-item>
         <mat-divider></mat-divider>
       </div>

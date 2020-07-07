@@ -77,6 +77,10 @@ mat-accordion {
 }
 .sub-review {
   background: white;
-  margin: 0 5% 0 5%;
+  margin: 0% 5% 0 5%;
   border-radius: 5px;
+}
+.review-answers {
+  background-image: linear-gradient(to right, #13547a  0%, #80d0c7 100%);
+  padding-top: 2%;
 }

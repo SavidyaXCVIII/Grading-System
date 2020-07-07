@@ -49,9 +49,14 @@ export class TeacherDashboardComponent implements OnInit {
     return this.totalTime / this.students.length;
   }
 
-  findNumberOfStudentAnsweredCorrect(questionNumber: number, assignment: number): void {
+  findNumberOfStudentAnswered(questionNumber: number, assignment: number, status: string): number {
+    this.count = 0;
     this.students.forEach(x => {
+      if (x.assignments[assignment].questions[questionNumber].status === status) {
+        this.count++;
+      }
     });
+    return this.count;
   }
 
   scroll(el: HTMLElement): void {
@@ -65,6 +70,10 @@ export class TeacherDashboardComponent implements OnInit {
   findQuestionsByAssignment(assignmentNumber: number): void {
     console.log(this.students[0].assignments[assignmentNumber].questions);
     this.assignmentQuestions = this.students[0].assignments[assignmentNumber].questions;
+  }
+
+  logOut(): void {
+    this.teacherService.id = null;
   }
 
 

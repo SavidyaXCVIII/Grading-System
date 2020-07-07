@@ -11,7 +11,6 @@ import {Teacher} from '../model/teacher';
 export class AuthenticationService {
 
   readonly ROOT_URL = 'http://localhost:8080';
-  studentId: number;
 
   constructor(private http: HttpClient) { }
 
@@ -32,15 +31,8 @@ export class AuthenticationService {
       null, httpOptions);
   }
 
-  getStudentId(): number {
-    return this.studentId;
-  }
-
   findStudentById(studentId: number): Observable<ApiResponse> {
     return this.http.get<ApiResponse>(this.ROOT_URL + '/student/' + studentId);
   }
 
-  getTeacher(userEmail: string): Observable<Teacher> {
-    return this.http.get<Teacher>(this.ROOT_URL + '/teacher?email=' + userEmail);
-  }
 }
