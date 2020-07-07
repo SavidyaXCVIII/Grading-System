@@ -100,3 +100,9 @@ p {
 .heading {
   color: #13547a;
 }
+mat-toolbar button {
+  padding: 3px;
+  margin: 3px 3px 3px 6px;
+  background: #13547a;
+  color: white;
+}

@@ -84,3 +84,10 @@ mat-accordion {
   background-image: linear-gradient(to right, #13547a  0%, #80d0c7 100%);
   padding-top: 2%;
 }
+
+mat-toolbar button {
+  padding: 3px;
+  margin: 3px 3px 3px 6px;
+  background: #13547a;
+  color: white;
+}

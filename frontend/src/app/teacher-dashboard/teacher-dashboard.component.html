@@ -3,9 +3,9 @@
   <mat-toolbar>
     <span>Student Grading System</span>
     <span class="example-spacer"></span>
-    <span class="userName"></span>
+    <span class="userName">{{teacher.name}}</span>
     <mat-icon class="example-icon" aria-hidden="false" aria-label="Example user verified icon">person</mat-icon>
-    <button mat-button routerLink="/" (click)="logOut()">Log out</button>
+    <button mat-stroked-button routerLink="/" (click)="logOut()">Log out</button>
   </mat-toolbar>
 
   <div class="sub-container">
@@ -48,7 +48,7 @@
         <h1>{{this.course}}</h1>
         <h2>{{this.teacher.name}}</h2>
         <p>Email - {{this.teacher.email}}</p>
-        <p>Student ID - {{this.teacher.teacherId}}</p>
+        <p>Teacher ID - {{this.teacher.teacherId}}</p>
       </div>
     </div>
   </div>
@@ -60,7 +60,7 @@
       <div *ngFor="let question of assignmentQuestions; let i = index">
         <div mat-subheader class="question">{{i+1}}.{{question.question}} </div>
         <mat-list-item>
-          <div mat-line class="heading">Average time spent : {{findAverageTimeOnQuestion(question.questionNumber - 1,assignmentNumber)}}</div>
+          <div mat-line class="heading">Average time spent : {{findAverageTimeOnQuestion(question.questionNumber - 1,assignmentNumber)}} seconds</div>
         </mat-list-item>
         <mat-list-item>
           <div mat-line>Number of correct answers : {{findNumberOfStudentAnswered(question.questionNumber - 1, assignmentNumber, 'right')}}</div>
