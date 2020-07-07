@@ -31,8 +31,6 @@ export class AuthenticationService {
       null, httpOptions);
   }
 
-  findStudentById(studentId: number): Observable<ApiResponse> {
-    return this.http.get<ApiResponse>(this.ROOT_URL + '/student/' + studentId);
-  }
+
 
 }
