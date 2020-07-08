@@ -44,7 +44,7 @@ export class LogInComponent implements OnInit {
 
   // send the user details and authenticate and get the user specific id
   onClickSendValues(): void {
-    this.authenticationService.login(this.logIn.value.email, this.logIn.value.password, this.type).subscribe(
+    this.authenticationService.login(this.logIn.value.email.toLowerCase(), this.logIn.value.password, this.type).subscribe(
       (response) => {
         this.status = response.message;
         console.log(response.message, response.status, response.data);
